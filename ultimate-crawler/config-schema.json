@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "config-schema.json",
+  "title": "Config Schema",
+  "type": "object",
+  "properties": {
+    "cinemasListUrl": {
+      "type": ["string", "array"],
+      "description": "- URL for cinemas list page from which we can parse cinemaIds dynamically. <br>- if this option is passed, nor `cinemaIds`, no `cinemas` option is needed."
+    },
+    "cinemaDetailsUrlTemplate": {
+      "type": "string",
+      "description": "URL Template for retrieving cinema details from a dedicated page. The crawler will make a separate request for each cinema."
+    },
+    "cinemaDetailsResponseParser": {
+      "type" : "function", 
+      "description": "Function for custom parsing of the cinema details pages, loaded as of `cinemaDetailsUrlTemplate`. See details."
+    },
+    "cinemaAddressSelector": {
+      "type": "string",
+      "description": "Selector for DOM / JSON node that contains the cinema's full formatted address"
+    },
+    "cinemaZipcodeSelector": {
+      "type": "string",
+      "description": "Selector for DOM / JSON node that contains the cinema's zipcode"
+    },
+    "cinemaCitySelector": {
+      "type": "string",
+      "description": "Selector for DOM / JSON node that contains the cinema's city's name"
+    },
+    "cinemaWebsiteSelector": {
+      "type": "string",
+      "description": "Selector for DOM / JSON node that contains the cinema's website URL"
+    },
+    "cinemaLatlonSelector": {
+      "type": "string", 
+      "description": "Selector for DOM / JSON node that contains the cinema's both latitude and longitude together. If it points to a link tag, the ultimate crawler search of a google maps or bing url to parse first."
+    },
+    "cinemaLatSelector": {
+      "type": "string", 
+      "description": "Selector for DOM / JSON node that contains the cinema's latitude as a single value"
+    },
+    "cinemaLonSelector": {
+      "type": "string", 
+      "description": "Selector for DOM / JSON node that contains the cinema's longitude as a single value"
+    },
+    "versionBoxSelector": {
+      "type": "string",
+      "description": "Selector for DOM / JSON node that group showtimes for a particular version of a movie. Version refers to 3D vs. 2D or different languages."
+    },
+    "versionLabelSelector": {
+      "type": "string", 
+      "description": "Selector for the DOM / JSON node that contains the label of the version box, which will be used for determining showtime flags. Will first be checked relative / inside the version box, then as previous sibling of each box node and finially relative to the movieBox using the `versionIdAttribute` "
+    }, 
+    "versionLabelIdAttribute": {
+      "type": "string",
+      "description": "Use in case the DOM nodes that contains the verion labels are too separated from the version boxes. The `versionIdAttribute` causes the ultimate crawler to build a map of version labels by the selected ID."
+    },
+    "versionLabelParser": {
+      "type": "function", 
+      "description": "Function that gets passed in the versionLabelBox cheerio element selected by `versionLabelSelector` and should return a label string."
+    }, 
+    "versionBoxIdParser": {
+      "type": "function",
+      "description": "Used together with `versionLabelIdAttribute`. Function that gets passed in a version box as cheerio element and should return the ID to find the mapped labels as of the `versionLabelIdAttribute`."
+    }, 
+    "versionFlagsParser": {
+      "type": "function",
+      "description": "Function that gets passed in the label of a version and should return the flags for the showtimes in the corresponding version box. If not specified it defaults to default behaviour. See details."
+    },
+    "showtimeTimeSelector": {
+      "type": "string",
+      "description": "In case the actual time is nested in another node inside the DOM node selected by `showtimeSelector`, this one selects it."
+    },
+    "showtimesResponseParser": {
+      "type": "function",
+      "description": "Custom implementation for parsing the showtimes page. See details."
+    }
+
+  }
+}

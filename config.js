@@ -1,0 +1,50 @@
+module.exports = {
+  outputDir: __dirname + '/output',
+  maxRequestAttempts: 5,
+  concurrentRequests: 10,
+  proxyUri: null,
+  rollbarAccessToken: null,
+  timeoutInHours: 2,
+  randomUserAgentEnabled: true,
+  randomUserAgentConfig: {
+    osNameBlacklist: [
+      "Jigsaw",
+      "portalmmm",
+      "Kindle",
+      "IEMobile",
+      "Lynx",
+      "PalmSource",
+      "Windows CE",
+      "DoCoMo",
+      "Mobi",
+      "Java",
+      "WebCopier",
+      "libwww",
+      "X11",
+      "Mediapartners",
+      "ReqwirelessWeb",
+      "Vodafone",
+      "Opera Mini",
+      "Avant Browser",
+      "Googlebot-Mobile",
+      "Android",
+      "Windows Phone",
+      "Windows Phone OS",
+      "PalmOS",
+      "Symbian",
+      "iOS",
+      "RIM Tablet OS",
+      "BlackBerry",
+      "webOS",
+      "MeeGo",
+      "Nintendo",
+      "PLAYSTATION",
+      "PlayStation"
+    ]
+  }, 
+  publicIpAddress: '127.0.0.1',
+  hipchat: {
+    roomToken: '<ROOM TOKEN>',
+    roomID: 123456 // room id or name
+  }
+}
